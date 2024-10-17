@@ -7,6 +7,7 @@ public class DevTest
         Scanner in = new Scanner(System.in);
         String firstName = "";
         int age = 0;
+        int favNum = 0;
         double salary = 0;
 /*
         firstName = getNonZeroLenString(in, "Enter your first name: ");
@@ -14,9 +15,12 @@ public class DevTest
 
         age = getInt(in,"Enter your age");
         System.out.println("You said your age is " + age);
- */
+
         salary = getDouble(in,"Enter your salary");
         System.out.println("Your salary is: " + salary);
+ */
+        favNum = getRangedInt(in,"Enter your favorite number",1,10);
+        System.out.println("your favorite number is " + favNum);
     }
 
     public static String getNonZeroLenString(Scanner pipe, String prompt)
@@ -73,4 +77,35 @@ public class DevTest
         return retVal;
     }
 
+    /**
+     * Gets an integer from the user via the console within a specified range
+     * @param pipe the Scanner to use for input
+     * @param prompt the prompt to tell the user what is required
+     * @param low the inclusive low bound
+     * @param high the inclusive high bound
+     * @return an int within the specified bounds
+     */
+    public static int getRangedInt(Scanner pipe, String prompt, int low, int high)
+    {
+        int retVal = 0;
+        boolean done = false;
+        String trash = "";
+
+        do {
+            System.out.print(prompt + " [" + low + "-" + high + "]: ");
+            if (pipe.hasNextInt()){
+                retVal = pipe.nextInt();
+                pipe.nextLine();
+                if(retVal >= low && retVal <= high){
+                    done = true;
+                }else{
+                    System.out.println("You must enter a value within the range [" + low + "-" + high + "]: ");
+                }
+            } else {
+                trash = pipe.nextLine();
+                System.out.println("You must enter a valid integer not " + trash);
+            }
+        }while(!done);
+        return retVal;
+    }
 }
