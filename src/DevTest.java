@@ -6,6 +6,7 @@ public class DevTest
     {
         Scanner in = new Scanner(System.in);
         String firstName = "";
+        boolean trueFalse = false;
         int age = 0;
         int favNum = 0;
         double salary = 0;
@@ -22,9 +23,13 @@ public class DevTest
 
         favNum = getRangedInt(in,"Enter your favorite number",1,10);
         System.out.println("your favorite number is " + favNum);
-*/
+
         constrained = getRangedDouble(in,"Enter the constrained",100,10000);
         System.out.println("The constrained is " + constrained);
+*/
+        trueFalse = getYNConfirm(in,"Give me a Y or an N!");
+        System.out.println("You said " + trueFalse);
+
 
     }
 
@@ -145,4 +150,41 @@ public class DevTest
         }while(!done);
         return retVal;
     }
+
+    /**
+     * Gets a Y or N from the user (yes or no) and returns the equivalent true or false
+     * @param pipe the Scanner used for input
+     * @param prompt tells the user what to enter
+     * @return true or false based on Y or N
+     */
+    public static boolean getYNConfirm(Scanner pipe, String prompt)
+    {
+        boolean retVal = false;
+        boolean done = false;
+        String YNResponse ="";
+
+        do{
+            System.out.print(prompt + ": ");
+            YNResponse = pipe.nextLine();
+            if(!YNResponse.matches("[YyNn]"))
+                System.out.println("You must enter [Y/N]: ");
+            else
+            {
+                done = true;
+                switch (YNResponse)
+                {
+                    case "Y":
+                    case "y":
+                        retVal = true;
+                        break;
+                    case "n":
+                    case "N":
+                        retVal = false;
+                        break;
+                }
+            }
+        }while(!done);
+        return retVal;
+    }
+
 }

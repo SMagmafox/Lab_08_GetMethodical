@@ -138,4 +138,40 @@ public class SafeInput
         }while(!done);
         return retVal;
     }
+
+    /**
+     * Gets a Y or N from the user (yes or no) and returns the equivalent true or false
+     * @param pipe the Scanner used for input
+     * @param prompt tells the user what to enter
+     * @return true or false based on Y or N
+     */
+    public static boolean getYNConfirm(Scanner pipe, String prompt)
+    {
+        boolean retVal = false;
+        boolean done = false;
+        String YNResponse ="";
+
+        do{
+            System.out.print(prompt + ": ");
+            YNResponse = pipe.nextLine();
+            if(!YNResponse.matches("[YyNn]"))
+                System.out.println("You must enter [Y/N]: ");
+            else
+            {
+                done = true;
+                switch (YNResponse)
+                {
+                    case "Y":
+                    case "y":
+                        retVal = true;
+                        break;
+                    case "n":
+                    case "N":
+                        retVal = false;
+                        break;
+                }
+            }
+        }while(!done);
+        return retVal;
+    }
 }
