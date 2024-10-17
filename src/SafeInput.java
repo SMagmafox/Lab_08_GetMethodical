@@ -49,4 +49,30 @@ public class SafeInput
         return retVal;
     }
 
+    /**
+     * gets a double value from the user at the console with no constraint
+     * @param pipe a Scanner used to get the input
+     * @param prompt the prompt that tells the user what to enter
+     * @return a double of any value
+     */
+    public static double getDouble(Scanner pipe, String prompt)
+    {
+        double retVal = 0.0;
+        boolean done = false;
+        String trash = "";
+
+        do {
+            System.out.print(prompt + ": ");
+            if (pipe.hasNextDouble()){
+                retVal = pipe.nextDouble();
+                pipe.nextLine();
+                done = true;
+            } else {
+                trash = pipe.nextLine();
+                System.out.println("You must enter a valid double not " + trash + " (A double has a period, so 2.5 is a double)");
+            }
+        }while(!done);
+        return retVal;
+    }
+
 }

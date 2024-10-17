@@ -7,6 +7,7 @@ public class DevTest
         Scanner in = new Scanner(System.in);
         String firstName = "";
         int age = 0;
+        double salary = 0;
 /*
         firstName = getNonZeroLenString(in, "Enter your first name: ");
         System.out.println("Your first name is " + firstName);
@@ -14,7 +15,8 @@ public class DevTest
         age = getInt(in,"Enter your age");
         System.out.println("You said your age is " + age);
  */
-
+        salary = getDouble(in,"Enter your salary");
+        System.out.println("Your salary is: " + salary);
     }
 
     public static String getNonZeroLenString(Scanner pipe, String prompt)
@@ -51,5 +53,24 @@ public class DevTest
         return retVal;
     }
 
+    public static double getDouble(Scanner pipe, String prompt)
+    {
+        double retVal = 0.0;
+        boolean done = false;
+        String trash = "";
+
+        do {
+            System.out.print(prompt + ": ");
+            if (pipe.hasNextDouble()){
+                retVal = pipe.nextDouble();
+                pipe.nextLine();
+                done = true;
+            } else {
+                trash = pipe.nextLine();
+                System.out.println("You must enter a valid double not " + trash + " (A double has a period, so 2.5 is a double)");
+            }
+        }while(!done);
+        return retVal;
+    }
 
 }
