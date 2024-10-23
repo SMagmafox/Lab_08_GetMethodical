@@ -174,4 +174,32 @@ public class SafeInput
         }while(!done);
         return retVal;
     }
+
+    /**
+     * Prompts the user to input a string that matches a RegEx pattern
+     * @param pipe the scanner used
+     * @param prompt the message to display as the input text
+     * @param regEx the regEx pattern in java string format to use for matching
+     * @return
+     */
+    public static String getRegExString(Scanner pipe, String prompt, String regEx)
+    {
+        String retVal = "";
+        boolean done = false;
+
+        do {
+            System.out.print(prompt + " " + regEx + ": ");
+            retVal = pipe.nextLine();
+            if (retVal.matches(regEx))
+            {
+                done = true;
+            }
+            else
+            {
+                System.out.println("You must enter a matching expression " + regEx + " not " + retVal);
+            }
+        }while(!done);
+
+        return retVal;
+    }
 }

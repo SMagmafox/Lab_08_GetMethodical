@@ -11,6 +11,7 @@ public class DevTest
         int favNum = 0;
         double salary = 0;
         double constrained = 0; //must be between 100 and 10000
+        String SSN = "";
 /*
         firstName = getNonZeroLenString(in, "Enter your first name: ");
         System.out.println("Your first name is " + firstName);
@@ -26,9 +27,11 @@ public class DevTest
 
         constrained = getRangedDouble(in,"Enter the constrained",100,10000);
         System.out.println("The constrained is " + constrained);
-*/
+
         trueFalse = getYNConfirm(in,"Give me a Y or an N!");
         System.out.println("You said " + trueFalse);
+*/
+        SSN = getRegExString(in,"Enter your SSN","^\\d{3}-\\d{2}-\\d{4}$");
 
 
     }
@@ -184,6 +187,34 @@ public class DevTest
                 }
             }
         }while(!done);
+        return retVal;
+    }
+
+    /**
+     * Prompts the user to input a string that matches a RegEx pattern
+     * @param pipe the scanner used
+     * @param prompt the message to display as the input text
+     * @param regEx the regEx pattern in java string format to use for matching
+     * @return
+     */
+    public static String getRegExString(Scanner pipe, String prompt, String regEx)
+    {
+        String retVal = "";
+        boolean done = false;
+
+        do {
+            System.out.print(prompt + " " + regEx + ": ");
+            retVal = pipe.nextLine();
+            if (retVal.matches(regEx))
+            {
+                done = true;
+            }
+            else
+            {
+                System.out.println("You must enter a matching expression " + regEx + " not " + retVal);
+            }
+        }while(!done);
+
         return retVal;
     }
 
