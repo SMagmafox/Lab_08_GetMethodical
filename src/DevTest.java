@@ -12,6 +12,7 @@ public class DevTest
         double salary = 0;
         double constrained = 0; //must be between 100 and 10000
         String SSN = "";
+        SSN = getRegExString(in,"Enter your SSN","^\\d{3}-\\d{2}-\\d{4}$");
 /*
         firstName = getNonZeroLenString(in, "Enter your first name: ");
         System.out.println("Your first name is " + firstName);
@@ -31,7 +32,6 @@ public class DevTest
         trueFalse = getYNConfirm(in,"Give me a Y or an N!");
         System.out.println("You said " + trueFalse);
 */
-        SSN = getRegExString(in,"Enter your SSN","^\\d{3}-\\d{2}-\\d{4}$");
 
 
     }
