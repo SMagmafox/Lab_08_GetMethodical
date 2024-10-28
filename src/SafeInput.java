@@ -205,15 +205,33 @@ public class SafeInput
 
     public static void prettyHeader(String msg)
     {
-        final int TOTAL_WIDTH = 60;
+        int totalWidth = 60;
         int msgLength = msg.length();
-        int spaceBefore = 0;
-        int spaceAfter = 0;
-        if(msgLength > 54)
-        {
-            System.out.println("Failed to create header, message is too long!");
-            return;
-        }
+        int totalSpaces = totalWidth - 6 - msgLength;
+        int leftSpaces = totalSpaces / 2;
+        int rightSpaces = totalSpaces - leftSpaces;
+
+        for (int i=0; i<totalWidth; i++)
+            System.out.print("*");
+
+        System.out.println();
+
+        System.out.print("***");
+
+        for(int i=0; i<leftSpaces; i++)
+            System.out.print(" ");
+
+        System.out.print(msg);
+
+        for(int i=0; i<rightSpaces; i++)
+            System.out.print(" ");
+
+        System.out.print("***");
+
+        System.out.println();
+
+        for (int i=0; i<totalWidth; i++)
+            System.out.print("*");
     }
 
 }
