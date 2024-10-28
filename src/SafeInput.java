@@ -234,4 +234,6 @@ public class SafeInput
             System.out.print("*");
     }
 
+
+
 }
